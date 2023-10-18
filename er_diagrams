@@ -1,0 +1,71 @@
+erDiagram
+    Doctors ||--|{ Appointments : i
+    Doctors {
+        int Doctors_id PK
+        string firstName
+        string lastName
+        int timetable_id FK
+        int specialization_Id FK
+        int institution_ID FK
+    }
+    timetable ||--|{ Doctors : i
+    timetable {
+        string timetable_id PK
+        int office_num
+        time reception_hours
+    }
+    specialization ||--|{ Doctors : i
+    specialization {
+        int specialization_Id PK
+        string name_of_specializaton
+        
+    }
+    Appointments ||--|{ Visits : i
+    Appointments {
+        int Appointment_Id PK
+        string Doctors_id FK
+        date Appointment_date
+        
+    }
+    Visits ||--|{ sick_list : i
+    Visits  {
+        int Visit_Id PK
+        int card_id FK
+        int Appointment_Id FK
+        string record_of_a_visit
+        int diagnosis_id FK
+        
+    }
+    diagnosis ||--|{ Visits : i
+    diagnosis {
+        int diagnosis_id PK
+        string description
+        
+    }
+    sick_list
+    sick_list {
+        int Id PK
+        string description
+        int Visit_Id FK
+        int card_id FK
+        date open_date
+        date closed_date
+    }
+    institution ||--|{ Doctors : i
+    institution ||--|{ Patient : i
+    institution {
+        int institution_ID PK
+        string institution_adress
+        
+    }
+    Patient ||--|{ sick_list : i
+    Patient ||--|{ Visits : i
+    Patient {
+        int card_id PK
+        string firstName
+        string lastName
+        int phone_num
+        int insurance_policy
+        int institution_ID FK
+        
+    }
